@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() => runApp(const PortfoliApp());
 
@@ -18,7 +20,6 @@ class PortfoliApp extends StatelessWidget {
 
 class PortfolioHomePageRoot extends StatefulWidget {
   const PortfolioHomePageRoot({super.key});
-
   @override
   State<PortfolioHomePageRoot> createState() => _PortfolioHomePageRootState();
 }
@@ -317,6 +318,34 @@ class HeroSection extends StatelessWidget {
       ],
     );
 
+    // Social media row widget
+    Widget socialRow = Row(
+      mainAxisAlignment:
+          isMobile ? MainAxisAlignment.start : MainAxisAlignment.start,
+      children: [
+        SocialMediaIconBox(
+          icon: SvgPicture.string(
+            '''<svg width="24" height="24" viewBox="0 0 24 24"><path fill="#0A66C2" d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.29c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 10.29h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.75 1.37-1.54 2.82-1.54 3.01 0 3.57 1.98 3.57 4.56v4.75z"/></svg>''',
+            width: 28,
+            height: 28,
+          ),
+          url: 'https://www.linkedin.com/in/anyahuru-oluebube-26004b26a/',
+        ),
+        const SizedBox(width: 10),
+        SocialMediaIconBox(
+          icon: const Icon(Icons.code,
+              color: Colors.black), // GitHub icon alternative
+          url: 'https://github.com/MrDaniel07',
+        ),
+        const SizedBox(width: 10),
+        SocialMediaIconBox(
+          icon: const Icon(Icons.ondemand_video,
+              color: Colors.red), // YouTube icon alternative
+          url: 'https://www.youtube.com/@danieloluebube',
+        ),
+      ],
+    );
+
     return Padding(
       padding: EdgeInsets.all(isMobile ? 20.0 : 40.0),
       child: isMobile
@@ -324,6 +353,7 @@ class HeroSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 nameRow,
+                const SizedBox(height: 10),
                 const SizedBox(height: 10),
                 // Move the image here, right after the intro
                 Center(
@@ -348,6 +378,8 @@ class HeroSection extends StatelessWidget {
                   style: TextStyle(fontSize: 14),
                 ),
                 const SizedBox(height: 30),
+                socialRow, // <-- Add here
+
                 ElevatedButton(
                   onPressed: () {
                     final url = Uri.parse(
@@ -373,6 +405,7 @@ class HeroSection extends StatelessWidget {
                     children: [
                       nameRow,
                       const SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       const Text(
                         "A Software Engineer and Cloud Security Engineer",
                         style: TextStyle(
@@ -383,7 +416,9 @@ class HeroSection extends StatelessWidget {
                         "A Software Engineer and a Cloud Security Engineer with experience in developing applications, cloud security, and cybersecurity compliance. \nProficient in software development, AWS cloud security, risk assessment, and security analysis. Hands-on experience in endpoint protection, incident response, and network security. Skilled in data analysis, program management, and UI/UX engineering.Strong background in cross-platform app development, along with SQL database design and data visualization. Passionate about securing digital assets and building scalable applications.",
                         style: TextStyle(fontSize: 17),
                       ),
-                      const SizedBox(height: 100),
+                      const SizedBox(height: 30),
+                      socialRow, // <-- Add here
+                      const SizedBox(height: 70),
                       ElevatedButton(
                         onPressed: () {
                           final url = Uri.parse(
@@ -939,6 +974,24 @@ class ContactSection extends StatelessWidget {
                 ),
         ],
       ),
+    );
+  }
+}
+
+class SocialMediaIconBox extends StatelessWidget {
+  final Widget icon;
+  final String url;
+  const SocialMediaIconBox({super.key, required this.icon, required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: icon,
+      iconSize: 28,
+      tooltip: url,
+      onPressed: () {
+        launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      },
     );
   }
 }
