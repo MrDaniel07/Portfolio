@@ -18,7 +18,6 @@ class PortfoliApp extends StatelessWidget {
 
 class PortfolioHomePageRoot extends StatefulWidget {
   const PortfolioHomePageRoot({super.key});
-
   @override
   State<PortfolioHomePageRoot> createState() => _PortfolioHomePageRootState();
 }
@@ -348,6 +347,7 @@ class HeroSection extends StatelessWidget {
                   style: TextStyle(fontSize: 14),
                 ),
                 const SizedBox(height: 30),
+
                 ElevatedButton(
                   onPressed: () {
                     final url = Uri.parse(
