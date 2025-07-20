@@ -985,13 +985,27 @@ class SocialMediaIconBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: icon,
-      iconSize: 28,
-      tooltip: url,
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
       },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFFE0CC9F),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(6),
+        margin: const EdgeInsets.symmetric(horizontal: 2),
+        child: icon,
+      ),
     );
   }
 }
