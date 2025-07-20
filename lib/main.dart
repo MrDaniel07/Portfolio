@@ -341,7 +341,7 @@ class HeroSection extends StatelessWidget {
         SocialMediaIconBox(
           icon: const Icon(Icons.ondemand_video,
               color: Colors.red), // YouTube icon alternative
-          url: 'https://www.youtube.com/@danieloluebube',
+          url: 'https://www.youtube.com/@code_dogma',
         ),
       ],
     );
@@ -383,7 +383,7 @@ class HeroSection extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     final url = Uri.parse(
-                        'https://raw.githubusercontent.com/MrDaniel07/RESUM-/main/Daniel_Software_Cybersecurity_Resume_Updated.docx');
+                        'https://raw.githubusercontent.com/MrDaniel07/RESUM-/blob/main/Daniel_Resume.pdf');
                     launchUrl(url);
                   },
                   style: ElevatedButton.styleFrom(
